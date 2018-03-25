@@ -14,7 +14,7 @@
 # mail.password: ''
 # mail.use-tls: false
 # The email address to send on behalf of
-# mail.from: 'root@localhost'
+mail.from: 'noreply@thinkingmachin.es'
 
 # If you'd like to configure email replies, enable this.
 # mail.enable-replies: false
@@ -35,6 +35,9 @@
 # A new key can be generated with `$ sentry config generate-secret-key`
 # system.secret-key: 'changeme'
 
+system.admin-email: 'marksteve@thinkingmachin.es'
+system.url-prefix: 'https://sentry.thinkingmachin.es'
+
 # The ``redis.clusters`` setting is used, unsurprisingly, to configure Redis
 # clusters. These clusters can be then referred to by name when configuring
 # backends such as the cache, digests, or TSDB backend.
@@ -52,9 +55,9 @@
 # Uploaded media uses these `filestore` settings. The available
 # backends are either `filesystem` or `s3`.
 
-# filestore.backend: 'filesystem'
-# filestore.options:
-#   location: '/tmp/sentry-files'
+filestore.backend: 'filesystem'
+filestore.options:
+  location: '/tmp/sentry-files'
 
 # filestore.backend: 's3'
 # filestore.options:

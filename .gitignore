@@ -67,3 +67,5 @@ target/
 
 *.tar
 data/
+
+.env
