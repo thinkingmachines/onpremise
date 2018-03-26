@@ -14,7 +14,7 @@
 # mail.password: ''
 # mail.use-tls: false
 # The email address to send on behalf of
-mail.from: 'noreply@thinkingmachin.es'
+mail.from: 'TM Sentry <sentry@thinkingmachin.es>'
 
 # If you'd like to configure email replies, enable this.
 # mail.enable-replies: false
