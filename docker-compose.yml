@@ -4,23 +4,22 @@ services:
     restart: unless-stopped
     build: .
     environment:
+      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
       SENTRY_MEMCACHED_HOST: memcached
       SENTRY_REDIS_HOST: redis
       SENTRY_POSTGRES_HOST: postgres
-      SENTRY_EMAIL_HOST: smtp
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      SENTRY_EMAIL_HOST: smtp.mailgun.org
+      SENTRY_EMAIL_PORT: 2525
+      SENTRY_EMAIL_USER: ${SENTRY_EMAIL_USER}
+      SENTRY_EMAIL_PASSWORD: ${SENTRY_EMAIL_PASSWORD}
       SENTRY_ENVIRONMENT: production
       SENTRY_USE_SSL: 1
-      SENTRY_DB_USER: sentry
-      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
-      SENTRY_DB_PASSWORD: ${POSTGRES_PASSWORD}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
     volumes:
       - ./data/sentry:/var/lib/sentry/files
-
-  smtp:
-    restart: unless-stopped
-    image: tianon/exim4
 
   memcached:
     restart: unless-stopped
@@ -46,7 +45,6 @@ services:
       - redis
       - postgres
       - memcached
-      - smtp
     ports:
       - '9000:9000'
 
@@ -58,7 +56,6 @@ services:
       - redis
       - postgres
       - memcached
-      - smtp
 
   worker:
     restart: unless-stopped
@@ -68,4 +65,3 @@ services:
       - redis
       - postgres
       - memcached
-      - smtp
